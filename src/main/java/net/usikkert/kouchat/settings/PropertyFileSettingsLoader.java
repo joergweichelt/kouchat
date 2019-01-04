@@ -74,6 +74,7 @@ public class PropertyFileSettingsLoader {
             setNetworkInterface(settings, fileContents);
             setSound(settings, fileContents);
             setSmileys(settings, fileContents);
+						setMinimizeToTray(settings, fileContents);
         }
 
         catch (final FileNotFoundException e) {
@@ -154,4 +155,12 @@ public class PropertyFileSettingsLoader {
             settings.setSmileys(Boolean.valueOf(fileContents.getProperty(SMILEYS.getKey())));
         }
     }
+		
+		private void setMinimizeToTray(final Settings settings, final Properties fileContents)
+		{
+			if(fileContents.getProperty(MINIMIZE_TO_TRAY.getKey())!= null)
+			{
+				settings.setMinimizeToTray(Boolean.valueOf(fileContents.getProperty(MINIMIZE_TO_TRAY.getKey())));
+			}
+		}
 }

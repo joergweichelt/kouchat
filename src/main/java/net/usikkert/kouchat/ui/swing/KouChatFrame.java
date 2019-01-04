@@ -362,7 +362,7 @@ public class KouChatFrame extends JFrame implements WindowListener, FocusListene
      */
     @Override
     public void windowIconified(final WindowEvent e) {
-
+			mediator.minimize();
     }
 
     /**

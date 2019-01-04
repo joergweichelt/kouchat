@@ -86,7 +86,7 @@ public class SettingsDialog extends JDialog implements ActionListener {
     private final JButton saveB, cancelB, chooseOwnColorB, chooseSysColorB, testBrowserB, chooseBrowserB;
     private final JTextField nickTF, browserTF;
     private final JLabel ownColorL, sysColorL;
-    private final JCheckBox soundCB, loggingCB, smileysCB, balloonCB, systemTrayCB;
+    private final JCheckBox soundCB, loggingCB, smileysCB, balloonCB, systemTrayCB, minimizeToTrayCB;
     private final JComboBox lookAndFeelCB, networkInterfaceCB; // Java 6 doesn't support generic JComboBox
 
     private final Settings settings;
@@ -180,12 +180,17 @@ public class SettingsDialog extends JDialog implements ActionListener {
         systemTrayCB.setToolTipText(swingMessages.getMessage("swing.settings.misc.enableSystemTray.tooltip"));
         systemTrayCB.addActionListener(this);
 
+        minimizeToTrayCB = new JCheckBox(swingMessages.getMessage("swing.settings.misc.minimizeToTray.label"));
+        minimizeToTrayCB.setToolTipText(swingMessages.getMessage("swing.settings.misc.minimizeToTray.tooltip"));
+        minimizeToTrayCB.addActionListener(this);
+
         final JPanel miscCheckBoxP = new JPanel(new GridLayout(3, 2));
         miscCheckBoxP.add(soundCB);
         miscCheckBoxP.add(systemTrayCB);
         miscCheckBoxP.add(smileysCB);
         miscCheckBoxP.add(balloonCB);
         miscCheckBoxP.add(loggingCB);
+				miscCheckBoxP.add(minimizeToTrayCB);
 
         final JLabel networkInterfaceL = new JLabel(swingMessages.getMessage("swing.settings.misc.networkInterface.label"));
         networkInterfaceL.setToolTipText(swingMessages.getMessage("swing.settings.misc.networkInterface.tooltip", Constants.APP_NAME));
@@ -324,6 +329,7 @@ public class SettingsDialog extends JDialog implements ActionListener {
                         final LookAndFeelWrapper lnfw = (LookAndFeelWrapper) lookAndFeelCB.getSelectedItem();
                         settings.setLookAndFeel(lnfw.getLookAndFeelInfo().getName());
                         settings.setNetworkInterface(getSelectedNetworkInterface().getDeviceName());
+												settings.setMinimizeToTray(minimizeToTrayCB.isSelected());
                         mediator.saveSettings();
                         setVisible(false);
                         notifyLookAndFeelChange(lnfw);
@@ -464,6 +470,7 @@ public class SettingsDialog extends JDialog implements ActionListener {
         ownColorL.setForeground(new Color(settings.getOwnColor()));
         soundCB.setSelected(settings.isSound());
         loggingCB.setSelected(settings.isLogging());
+				minimizeToTrayCB.setSelected(settings.getMinimizeToTray());
         browserTF.setText(settings.getBrowser());
         smileysCB.setSelected(settings.isSmileys());
 

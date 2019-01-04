@@ -96,7 +96,9 @@ public class UIFactory {
                 }
 
                 else {
-                    final boolean startMinimized = argumentParser.hasArgument(Argument.MINIMIZED);
+                    boolean startMinimized = argumentParser.hasArgument(Argument.MINIMIZED);
+										if( !startMinimized )
+											startMinimized = this.settings.getMinimizeToTray();
                     loadSwingUserInterface(startMinimized);
                 }
             }

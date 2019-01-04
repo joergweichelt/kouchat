@@ -37,6 +37,7 @@ public enum PropertyFileSettings {
     LOGGING("logging"),
     BALLOONS("balloons"),
     SYSTEM_TRAY("systemTray"),
+		MINIMIZE_TO_TRAY("minimizeToTray"),
     BROWSER("browser"),
     LOOK_AND_FEEL("lookAndFeel"),
     NETWORK_INTERFACE("networkInterface"),

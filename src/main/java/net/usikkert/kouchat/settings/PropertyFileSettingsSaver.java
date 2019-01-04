@@ -83,6 +83,7 @@ public class PropertyFileSettingsSaver implements SettingsSaver {
         properties.put(LOOK_AND_FEEL.getKey(), Tools.emptyIfNull(settings.getLookAndFeel()));
         properties.put(BALLOONS.getKey(), String.valueOf(settings.isBalloons()));
         properties.put(SYSTEM_TRAY.getKey(), String.valueOf(settings.isSystemTray()));
+				properties.put(MINIMIZE_TO_TRAY.getKey(), String.valueOf(settings.getMinimizeToTray()));
         properties.put(NETWORK_INTERFACE.getKey(), Tools.emptyIfNull(settings.getNetworkInterface()));
 
         try {

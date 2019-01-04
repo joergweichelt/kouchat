@@ -67,6 +67,9 @@ public class Settings {
 
     /** If the system tray icon is enabled. */
     private boolean systemTray;
+		
+		/** Minimize on tray on startup **/
+		private boolean minimizeToTray;
 
     /** The choice of browser to open urls with. */
     private String browser;
@@ -410,4 +413,27 @@ public class Settings {
     public void setNetworkInterface(final String networkInterface) {
         this.networkInterface = networkInterface;
     }
+		
+		/**
+		 * Sets wether the app is minimized to tray right from the start.
+		 * 
+		 * @param minimize 
+		 */
+		public void setMinimizeToTray( final boolean minimize )
+		{
+			if(this.minimizeToTray != minimize)
+			{
+				this.minimizeToTray = minimize;
+			}
+		}
+		
+		/**
+		 * Gets whether the app can be minimized to tray
+		 * 
+		 * @return 
+		 */
+		public boolean getMinimizeToTray()
+		{
+			return this.minimizeToTray;
+		}
 }

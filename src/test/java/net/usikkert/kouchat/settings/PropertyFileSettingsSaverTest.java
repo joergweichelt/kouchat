@@ -143,6 +143,7 @@ public class PropertyFileSettingsSaverTest {
         settings.setBrowser("firefox");
         settings.setLookAndFeel("starwars");
         settings.setNetworkInterface("wlan2");
+				settings.setMinimizeToTray(true);
 
         settingsSaver.saveSettings();
 
@@ -152,7 +153,7 @@ public class PropertyFileSettingsSaverTest {
 
         final Properties properties = propertiesCaptor.getValue();
 
-        assertEquals(11, properties.size());
+        assertEquals(12, properties.size());
 
         assertEquals("Linda", properties.get(NICK_NAME.getKey()));
         assertEquals("100", properties.get(OWN_COLOR.getKey()));
@@ -165,6 +166,7 @@ public class PropertyFileSettingsSaverTest {
         assertEquals("firefox", properties.get(BROWSER.getKey()));
         assertEquals("starwars", properties.get(LOOK_AND_FEEL.getKey()));
         assertEquals("wlan2", properties.get(NETWORK_INTERFACE.getKey()));
+				assertEquals("true", properties.get(MINIMIZE_TO_TRAY.getKey()));
     }
 
     @Test
@@ -182,7 +184,7 @@ public class PropertyFileSettingsSaverTest {
 
         final Properties properties = propertiesCaptor.getValue();
 
-        assertEquals(11, properties.size());
+        assertEquals(12, properties.size());
 
         assertEquals("", properties.get(NICK_NAME.getKey()));
         assertEquals("", properties.get(BROWSER.getKey()));
