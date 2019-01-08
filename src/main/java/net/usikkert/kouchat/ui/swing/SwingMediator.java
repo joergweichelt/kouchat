@@ -627,6 +627,8 @@ public class SwingMediator implements Mediator, UserInterface {
             else if (!privchat.isFocused()) {
                 privchat.updateUserInformation();
                 beeper.beep();
+		sysTray.showBalloonMessage(uiTools.createTitle(me.getNick()),
+			   swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()));
             }
         }
 
@@ -643,6 +645,8 @@ public class SwingMediator implements Mediator, UserInterface {
             else if (!privchat.isFocused()) {
                 privchat.updateUserInformation();
                 beeper.beep();
+		sysTray.showBalloonMessage(uiTools.createTitle(me.getNick()),
+			   swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()));
             }
         }
 

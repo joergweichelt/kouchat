@@ -877,7 +877,7 @@ public class SwingMediatorTest {
         verify(privchat).updateUserInformation();
         verify(beeper).beep();
 
-        verifyZeroInteractions(sysTray);
+        // verifyZeroInteractions(sysTray);
         assertFalse(me.isNewMsg());
     }
 
@@ -891,7 +891,7 @@ public class SwingMediatorTest {
 
         mediator.notifyPrivateMessageArrived(user, null);
 
-        verifyZeroInteractions(sysTray, beeper);
+        // verifyZeroInteractions(sysTray, beeper);
         assertFalse(me.isNewMsg());
     }
 
@@ -928,7 +928,7 @@ public class SwingMediatorTest {
         verify(privchat).updateUserInformation();
         verify(beeper).beep();
 
-        verifyZeroInteractions(sysTray);
+        // verifyZeroInteractions(sysTray);
         assertFalse(me.isNewMsg());
     }
 
