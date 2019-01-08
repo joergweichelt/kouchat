@@ -52,7 +52,6 @@ public class ButtonPanelTest {
     private JButton clearButton;
     private JButton awayButton;
     private JButton topicButton;
-    private JButton minimizeButton;
     private Mediator mediator;
 
     @Before
@@ -62,7 +61,6 @@ public class ButtonPanelTest {
         clearButton = TestUtils.getFieldValue(buttonPanel, JButton.class, "clearB");
         awayButton = TestUtils.getFieldValue(buttonPanel, JButton.class, "awayB");
         topicButton = TestUtils.getFieldValue(buttonPanel, JButton.class, "topicB");
-        minimizeButton = TestUtils.getFieldValue(buttonPanel, JButton.class, "minimizeB");
 
         mediator = mock(Mediator.class);
         buttonPanel.setMediator(mediator);
@@ -98,20 +96,13 @@ public class ButtonPanelTest {
     }
 
     @Test
-    public void minimizeButtonShouldHaveCorrectText() {
-        assertEquals("Minimize", minimizeButton.getText());
-        assertEquals("Minimize to the system tray.", minimizeButton.getToolTipText());
-    }
-
-    @Test
     public void layoutShouldIncludeAllButtons() {
         final Component[] components = buttonPanel.getComponents();
-        assertEquals(4, components.length);
+        assertEquals(3, components.length);
 
         assertSame(clearButton, components[0]);
         assertSame(awayButton, components[1]);
         assertSame(topicButton, components[2]);
-        assertSame(minimizeButton, components[3]);
     }
 
     @Test
@@ -131,13 +122,6 @@ public class ButtonPanelTest {
 
         buttonPanel.setAwayState(false);
         assertTrue(topicButton.isEnabled());
-    }
-
-    @Test
-    public void clickOnMinimizeShouldMinimize() {
-        minimizeButton.doClick();
-
-        verify(mediator).minimize();
     }
 
     @Test

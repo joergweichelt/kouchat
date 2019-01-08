@@ -51,9 +51,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
 
     private final UITools uiTools = new UITools();
 
-    /** The minimize button. Minimizes the application to the system tray. */
-    private final JButton minimizeB;
-
     /** The clear button. Clears the text in the main chat. */
     private final JButton clearB;
 
@@ -74,7 +71,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
     public ButtonPanel(final SwingMessages swingMessages) {
         Validate.notNull(swingMessages, "Swing messages can not be null");
 
-        setLayout(new GridLayout(4, 1));
+        setLayout(new GridLayout(3, 1));
 
         clearB = new JButton(swingMessages.getMessage("swing.buttonBar.clear"));
         clearB.addActionListener(this);
@@ -90,11 +87,6 @@ public class ButtonPanel extends JPanel implements ActionListener {
         topicB.addActionListener(this);
         topicB.setToolTipText(swingMessages.getMessage("swing.buttonBar.topic.tooltip"));
         add(topicB);
-
-        minimizeB = new JButton(swingMessages.getMessage("swing.buttonBar.minimize"));
-        minimizeB.addActionListener(this);
-        minimizeB.setToolTipText(swingMessages.getMessage("swing.buttonBar.minimize.tooltip"));
-        add(minimizeB);
 
         setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 1));
     }
@@ -125,16 +117,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(final ActionEvent e) {
-        if (e.getSource() == minimizeB) {
-            uiTools.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    mediator.minimize();
-                }
-            });
-        }
-
-        else if (e.getSource() == clearB) {
+        if (e.getSource() == clearB) {
             uiTools.invokeLater(new Runnable() {
                 @Override
                 public void run() {
