@@ -23,10 +23,8 @@
 package net.usikkert.kouchat.ui.swing;
 
 import java.io.File;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 import net.usikkert.kouchat.jmx.JMXAgent;
 import net.usikkert.kouchat.message.CoreMessages;
 import net.usikkert.kouchat.misc.ChatLogger;
@@ -52,7 +50,6 @@ import net.usikkert.kouchat.ui.swing.settings.SettingsDialog;
 import net.usikkert.kouchat.util.ResourceLoader;
 import net.usikkert.kouchat.util.Tools;
 import net.usikkert.kouchat.util.Validate;
-
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -612,6 +609,7 @@ public class SwingMediator implements Mediator, UserInterface {
     @Override
     public void notifyPrivateMessageArrived(final User user, final String message) {
         final PrivateChatWindow privchat = user.getPrivchat();
+	assert null != privchat;
 
         // Main chat hidden
         if (!gui.isVisible()) {
@@ -619,16 +617,20 @@ public class SwingMediator implements Mediator, UserInterface {
             if (!privchat.isVisible()) {
                 sysTray.setNormalActivityState();
                 beeper.beep();
-                sysTray.showBalloonMessage(uiTools.createTitle(me.getNick()),
-                                           swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()));
+                sysTray.showNewPrivateMessageNotification(
+		  uiTools.createTitle(me.getNick()),
+                  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
+		  user);
             }
 
             // Private chat out of focus - beep, update privchat icon
             else if (!privchat.isFocused()) {
                 privchat.updateUserInformation();
                 beeper.beep();
-		sysTray.showBalloonMessage(uiTools.createTitle(me.getNick()),
-			   swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()));
+		sysTray.showNewPrivateMessageNotification(
+		  uiTools.createTitle(me.getNick()),
+		  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
+		  user);
             }
         }
 
@@ -645,8 +647,10 @@ public class SwingMediator implements Mediator, UserInterface {
             else if (!privchat.isFocused()) {
                 privchat.updateUserInformation();
                 beeper.beep();
-		sysTray.showBalloonMessage(uiTools.createTitle(me.getNick()),
-			   swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()));
+		sysTray.showNewPrivateMessageNotification(
+		  uiTools.createTitle(me.getNick()),
+		  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
+		  user);
             }
         }
 

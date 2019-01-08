@@ -38,14 +38,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import net.usikkert.kouchat.Constants;
 import net.usikkert.kouchat.event.SettingsListener;
+import net.usikkert.kouchat.misc.User;
 import net.usikkert.kouchat.settings.Setting;
 import net.usikkert.kouchat.settings.Settings;
 import net.usikkert.kouchat.ui.swing.messages.SwingMessages;
 import net.usikkert.kouchat.util.Validate;
-
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -64,6 +63,8 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
 
     /** Name of property to listen for tray icon changes. */
     private static final String TRAY_ICONS = "trayIcons";
+
+    private static final String ACTION_NEW_PRIVATE_MESSAGE = "newPrivateMessage";
 
     private final UITools uiTools = new UITools();
 
@@ -92,6 +93,7 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
     @Nullable
     private StatusIcons statusIcons;
 
+    private User newPrivateMessageSender = null;
     /**
      * Constructor.
      *
@@ -142,6 +144,23 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
             }
 
             trayIcon.addMouseListener(this);
+            trayIcon.addActionListener(new ActionListener(){
+	      @Override
+	      public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		  default: {
+		    LOG.log(Level.WARNING, "Unhandled action: {0}", e.getActionCommand());
+		  }
+		  case ACTION_NEW_PRIVATE_MESSAGE: {
+		    if ((null != mediator) && (null != newPrivateMessageSender)) {
+		      mediator.showPrivChat(newPrivateMessageSender);
+		      newPrivateMessageSender = null;
+		    }
+		  }
+		}
+              }
+            });
+
             trayIcon.setToolTip(Constants.APP_NAME);
 
             try {
@@ -255,7 +274,7 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
     @Override
     public void actionPerformed(final ActionEvent e) {
         if (e.getSource() == quitMI) {
-            mediator.quit();
+          mediator.quit();
         }
     }
 
@@ -368,7 +387,28 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
     public void showBalloonMessage(final String title, final String message) {
         if (settings.isBalloons() && trayIcon != null) {
             trayIcon.displayMessage(title, message, MessageType.NONE);
+            trayIcon.setActionCommand(message);
         }
+    }
+
+    /**
+     * Shows a balloon popup message by the system tray icon when a new private messages arrives.
+     * The message will disappear by itself after a few seconds, or if the user clicks
+     * on it.
+     *
+     * <p>Can be enabled and disabled from the settings.</p>
+     *
+     * @param title The title of the message.
+     * @param message The message to show in the popup.
+     * @param from The sender of the private message
+     */
+    public void showNewPrivateMessageNotification(String title, String message, User from) {
+      Validate.notNull(from, "sender must not be null");
+      if (settings.isBalloons() && trayIcon != null) {
+        trayIcon.displayMessage(title, message, MessageType.INFO);
+	trayIcon.setActionCommand(ACTION_NEW_PRIVATE_MESSAGE);
+        newPrivateMessageSender = from;
+      }
     }
 
     /**
