@@ -40,7 +40,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.usikkert.kouchat.Constants;
 import net.usikkert.kouchat.event.SettingsListener;
-import net.usikkert.kouchat.misc.User;
 import net.usikkert.kouchat.settings.Setting;
 import net.usikkert.kouchat.settings.Settings;
 import net.usikkert.kouchat.ui.swing.messages.SwingMessages;
@@ -93,7 +92,7 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
     @Nullable
     private StatusIcons statusIcons;
 
-    private User newPrivateMessageSender = null;
+    private ActionListener balloonActionListener = null;
     /**
      * Constructor.
      *
@@ -152,9 +151,9 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
 		    LOG.log(Level.WARNING, "Unhandled action: {0}", e.getActionCommand());
 		  }
 		  case ACTION_NEW_PRIVATE_MESSAGE: {
-		    if ((null != mediator) && (null != newPrivateMessageSender)) {
-		      mediator.showPrivChat(newPrivateMessageSender);
-		      newPrivateMessageSender = null;
+		    if (null != balloonActionListener) {
+		      balloonActionListener.actionPerformed(e);
+		      balloonActionListener = null;
 		    }
 		  }
 		}
@@ -400,14 +399,13 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
      *
      * @param title The title of the message.
      * @param message The message to show in the popup.
-     * @param from The sender of the private message
+     * @param listener Action listener to handle balloon actions. May be null
      */
-    public void showNewPrivateMessageNotification(String title, String message, User from) {
-      Validate.notNull(from, "sender must not be null");
+    public void showNewPrivateMessageNotification(String title, String message, ActionListener listener) {
       if (settings.isBalloons() && trayIcon != null) {
         trayIcon.displayMessage(title, message, MessageType.INFO);
 	trayIcon.setActionCommand(ACTION_NEW_PRIVATE_MESSAGE);
-        newPrivateMessageSender = from;
+        balloonActionListener = listener;
       }
     }
 

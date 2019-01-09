@@ -22,6 +22,8 @@
 
 package net.usikkert.kouchat.ui.swing;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -620,7 +622,7 @@ public class SwingMediator implements Mediator, UserInterface {
                 sysTray.showNewPrivateMessageNotification(
 		  uiTools.createTitle(me.getNick()),
                   swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
-		  user);
+		  new NewPrivateMessageBalloonActionListener(user));
             }
 
             // Private chat out of focus - beep, update privchat icon
@@ -630,7 +632,7 @@ public class SwingMediator implements Mediator, UserInterface {
 		sysTray.showNewPrivateMessageNotification(
 		  uiTools.createTitle(me.getNick()),
 		  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
-		  user);
+		  new NewPrivateMessageBalloonActionListener(user));
             }
         }
 
@@ -650,7 +652,7 @@ public class SwingMediator implements Mediator, UserInterface {
 		sysTray.showNewPrivateMessageNotification(
 		  uiTools.createTitle(me.getNick()),
 		  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
-		  user);
+ 		  new NewPrivateMessageBalloonActionListener(user));
             }
         }
 
@@ -904,4 +906,18 @@ public class SwingMediator implements Mediator, UserInterface {
     public boolean isVisible() {
         return gui.isVisible();
     }
+
+    class NewPrivateMessageBalloonActionListener implements ActionListener {
+	private final User user;
+
+	public NewPrivateMessageBalloonActionListener(User user){
+	  Validate.notNull(user, "User must not be null");
+	  this.user = user;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e){
+	  showPrivChat(user);
+	}
+    };
 }
