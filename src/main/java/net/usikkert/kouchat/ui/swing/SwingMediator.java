@@ -52,6 +52,7 @@ import net.usikkert.kouchat.ui.swing.settings.SettingsDialog;
 import net.usikkert.kouchat.util.ResourceLoader;
 import net.usikkert.kouchat.util.Tools;
 import net.usikkert.kouchat.util.Validate;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -619,20 +620,14 @@ public class SwingMediator implements Mediator, UserInterface {
             if (!privchat.isVisible()) {
                 sysTray.setNormalActivityState();
                 beeper.beep();
-                sysTray.showNewPrivateMessageNotification(
-		  uiTools.createTitle(me.getNick()),
-                  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
-		  new NewPrivateMessageBalloonActionListener(user));
+                showNewPrivateMessageNotification(user, message);
             }
 
             // Private chat out of focus - beep, update privchat icon
             else if (!privchat.isFocused()) {
                 privchat.updateUserInformation();
                 beeper.beep();
-		sysTray.showNewPrivateMessageNotification(
-		  uiTools.createTitle(me.getNick()),
-		  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
-		  new NewPrivateMessageBalloonActionListener(user));
+		        showNewPrivateMessageNotification(user, message);
             }
         }
 
@@ -649,10 +644,7 @@ public class SwingMediator implements Mediator, UserInterface {
             else if (!privchat.isFocused()) {
                 privchat.updateUserInformation();
                 beeper.beep();
-		sysTray.showNewPrivateMessageNotification(
-		  uiTools.createTitle(me.getNick()),
-		  swingMessages.getMessage("swing.systemTray.balloon.newPrivateMessage", user.getNick()),
- 		  new NewPrivateMessageBalloonActionListener(user));
+		        showNewPrivateMessageNotification(user, message);
             }
         }
 
@@ -663,6 +655,14 @@ public class SwingMediator implements Mediator, UserInterface {
                 privchat.updateUserInformation();
             }
         }
+    }
+
+    private void showNewPrivateMessageNotification(@NotNull User sender, String message) {
+        sysTray.showNewPrivateMessageNotification(
+                sender.getNick(),
+                message,
+                new NewPrivateMessageBalloonActionListener(sender)
+        );
     }
 
     /**
@@ -910,7 +910,7 @@ public class SwingMediator implements Mediator, UserInterface {
     class NewPrivateMessageBalloonActionListener implements ActionListener {
 	private final User user;
 
-	public NewPrivateMessageBalloonActionListener(User user){
+	NewPrivateMessageBalloonActionListener(User user){
 	  Validate.notNull(user, "User must not be null");
 	  this.user = user;
 	}
@@ -919,5 +919,5 @@ public class SwingMediator implements Mediator, UserInterface {
 	public void actionPerformed(ActionEvent e){
 	  showPrivChat(user);
 	}
-    };
+    }
 }
