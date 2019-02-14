@@ -28,6 +28,7 @@ package net.usikkert.kouchat.ui;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class UIException extends Exception {
 
     /**

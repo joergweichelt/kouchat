@@ -47,6 +47,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class ButtonPanel extends JPanel implements ActionListener {
 
     private final UITools uiTools = new UITools();

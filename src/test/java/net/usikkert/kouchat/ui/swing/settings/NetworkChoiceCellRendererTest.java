@@ -45,7 +45,7 @@ public class NetworkChoiceCellRendererTest {
 
     @Test
     public void getListCellRendererComponentShouldSetToolTipToDisplayName() {
-        final JList list = new JList();
+        final JList<NetworkChoice> list = new JList<>();
         final NetworkChoice networkChoice = new NetworkChoice("deviceName", "displayName");
 
         assertNotNull(cellRenderer.getListCellRendererComponent(list, networkChoice, 0, false, false));

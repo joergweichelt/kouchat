@@ -46,7 +46,8 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
-public class UserListCellRenderer extends JLabel implements ListCellRenderer {
+@SuppressWarnings("serial")
+public class UserListCellRenderer extends JLabel implements ListCellRenderer<User> {
 
     /** The logger to use for this class. */
     private static final Logger LOG = Logger.getLogger(UserListCellRenderer.class.getName());
@@ -119,7 +120,7 @@ public class UserListCellRenderer extends JLabel implements ListCellRenderer {
      * {@inheritDoc}
      */
     @Override
-    public Component getListCellRendererComponent(final JList list, final Object value,
+    public Component getListCellRendererComponent(final JList<? extends User> list, final User value,
             final int index, final boolean isSelected, final boolean cellHasFocus) {
         if (isSelected) {
             setBackground(list.getSelectionBackground());
@@ -133,7 +134,7 @@ public class UserListCellRenderer extends JLabel implements ListCellRenderer {
             setBorder(normalBorder);
         }
 
-        final User user = (User) value;
+        final User user = value;
 
         if (user != null) {
             if (user.isMe()) {

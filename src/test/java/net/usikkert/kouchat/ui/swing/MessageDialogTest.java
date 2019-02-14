@@ -43,6 +43,7 @@ import org.junit.Test;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class MessageDialogTest {
 
     @Rule

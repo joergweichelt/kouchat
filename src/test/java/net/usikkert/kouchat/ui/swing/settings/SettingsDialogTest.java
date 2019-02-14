@@ -77,7 +77,7 @@ import org.junit.Test;
  *
  * @author Christian Ihle
  */
-@SuppressWarnings("HardCodedStringLiteral")
+@SuppressWarnings("HardCodedStringLiteral, Serial, unchecked")
 public class SettingsDialogTest  {
 
     @Rule
@@ -101,7 +101,7 @@ public class SettingsDialogTest  {
     private JLabel systemColorLabel;
     private JButton changeSystemColorButton;
     private JLabel lookAndFeelLabel;
-    private JComboBox lookAndFeelComboBox;
+    private JComboBox<LookAndFeelWrapper> lookAndFeelComboBox;
 
     private JPanel miscPanel;
     private JCheckBox soundCheckBox;
@@ -110,7 +110,7 @@ public class SettingsDialogTest  {
     private JCheckBox balloonCheckBox;
     private JCheckBox systemTrayCheckBox;
     private JLabel networkInterfaceLabel;
-    private JComboBox networkInterfaceComboBox;
+    private JComboBox<NetworkChoice> networkInterfaceComboBox;
 
     private JButton okButton;
     private JButton cancelButton;
@@ -124,6 +124,7 @@ public class SettingsDialogTest  {
     private SwingMessages messages;
 
     @Before
+    @SuppressWarnings("unchecked")
     public void setUp() {
         settings = mock(Settings.class);
         errorHandler = mock(ErrorHandler.class);
@@ -162,7 +163,7 @@ public class SettingsDialogTest  {
         changeSystemColorButton = (JButton) systemColorPanel.getComponent(2);
         final JPanel lookAndFeelPanel = (JPanel) chooseLookPanel.getComponent(2);
         lookAndFeelLabel = (JLabel) lookAndFeelPanel.getComponent(0);
-        lookAndFeelComboBox = (JComboBox) lookAndFeelPanel.getComponent(2);
+        lookAndFeelComboBox = (JComboBox<LookAndFeelWrapper>) lookAndFeelPanel.getComponent(2);
 
         miscPanel = (JPanel) centerPanel.getComponent(1);
         final JPanel miscCheckBoxPanel = (JPanel) miscPanel.getComponent(0);
@@ -173,7 +174,7 @@ public class SettingsDialogTest  {
         systemTrayCheckBox = (JCheckBox) miscCheckBoxPanel.getComponent(1);
         final JPanel networkInterfacePanel = (JPanel) miscPanel.getComponent(1);
         networkInterfaceLabel = (JLabel) networkInterfacePanel.getComponent(0);
-        networkInterfaceComboBox = (JComboBox) networkInterfacePanel.getComponent(2);
+        networkInterfaceComboBox = (JComboBox<NetworkChoice>) networkInterfacePanel.getComponent(2);
 
         okButton = (JButton) buttonPanel.getComponent(0);
         cancelButton = (JButton) buttonPanel.getComponent(1);
@@ -495,9 +496,10 @@ public class SettingsDialogTest  {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void dialogShouldHideOnEscape() {
         final SettingsDialog fakeVisibleDialog = createFakeVisibleDialog();
-        final JComboBox networkInterfaceCB = TestUtils.getFieldValue(fakeVisibleDialog, JComboBox.class, "networkInterfaceCB");
+        final JComboBox<NetworkChoice> networkInterfaceCB = TestUtils.getFieldValue(fakeVisibleDialog, JComboBox.class, "networkInterfaceCB");
 
         // Adding an item to avoid NullPointerException in NetworkChoiceCellRenderer.getListCellRendererComponent()
         networkInterfaceCB.addItem(new NetworkChoice("eth0", "eth0"));
@@ -541,7 +543,7 @@ public class SettingsDialogTest  {
 
     @Test
     public void networkInterfaceComboBoxShouldUseNetworkChoiceCellRenderer() {
-        final ListCellRenderer renderer = networkInterfaceComboBox.getRenderer();
+        final ListCellRenderer<?> renderer = networkInterfaceComboBox.getRenderer();
 
         assertEquals(NetworkChoiceCellRenderer.class, renderer.getClass());
     }
@@ -1106,7 +1108,7 @@ public class SettingsDialogTest  {
     }
 
     private void checkNetworkChoiceAt(final int position, final String deviceName, final String displayName) {
-        final NetworkChoice itemAt = (NetworkChoice) networkInterfaceComboBox.getItemAt(position);
+        final NetworkChoice itemAt = networkInterfaceComboBox.getItemAt(position);
 
         assertEquals(deviceName, itemAt.getDeviceName());
         assertEquals(displayName, itemAt.getDisplayName());
@@ -1156,6 +1158,7 @@ public class SettingsDialogTest  {
     }
 
     private SettingsDialog createFakeVisibleDialog() {
+        @SuppressWarnings("serial")
         final SettingsDialog dialog = new SettingsDialog(imageLoader, settings, errorHandler, messages) {
 
             private boolean visible;

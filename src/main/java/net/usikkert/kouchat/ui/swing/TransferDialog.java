@@ -54,6 +54,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class TransferDialog extends JDialog implements FileTransferListener, ActionListener {
 
     private static final String ZERO_KB = "0KB";

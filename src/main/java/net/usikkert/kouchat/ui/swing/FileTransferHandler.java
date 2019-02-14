@@ -45,6 +45,7 @@ import javax.swing.text.JTextComponent;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class FileTransferHandler extends TransferHandler {
 
     /** The logger. */

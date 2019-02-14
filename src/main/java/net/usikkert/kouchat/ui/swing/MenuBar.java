@@ -43,6 +43,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class MenuBar extends JMenuBar implements ActionListener {
 
     private final UITools uiTools = new UITools();

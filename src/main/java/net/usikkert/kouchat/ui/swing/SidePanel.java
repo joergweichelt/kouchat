@@ -53,6 +53,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class SidePanel extends JPanel implements ActionListener, MouseListener, FileDropSource {
 
     private final UITools uiTools = new UITools();
@@ -71,7 +72,7 @@ public class SidePanel extends JPanel implements ActionListener, MouseListener, 
     private final JMenuItem privchatMI;
 
     /** The user list. */
-    private final JList userL;
+    private final JList<User> userL;
 
     /** The panel with the buttons. */
     private final ButtonPanel buttonP;
@@ -115,7 +116,7 @@ public class SidePanel extends JPanel implements ActionListener, MouseListener, 
         setLayout(new BorderLayout(2, 2));
 
         fileTransferHandler = new FileTransferHandler(this);
-        userL = new JList();
+        userL = new JList<>();
         userL.setCellRenderer(new UserListCellRenderer(imageLoader, swingMessages));
         userL.addMouseListener(this);
         userL.setTransferHandler(fileTransferHandler);
@@ -176,7 +177,7 @@ public class SidePanel extends JPanel implements ActionListener, MouseListener, 
      */
     @Override
     public User getUser() {
-        return (User) userL.getSelectedValue();
+        return userL.getSelectedValue();
     }
 
     /**
@@ -184,7 +185,7 @@ public class SidePanel extends JPanel implements ActionListener, MouseListener, 
      *
      * @return The user list.
      */
-    public JList getUserList() {
+    public JList<User> getUserList() {
         return userL;
     }
 

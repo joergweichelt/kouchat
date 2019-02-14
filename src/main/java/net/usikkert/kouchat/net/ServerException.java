@@ -27,6 +27,7 @@ package net.usikkert.kouchat.net;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class ServerException extends Exception {
 
     /**

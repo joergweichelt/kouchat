@@ -32,6 +32,7 @@ import javax.swing.plaf.basic.BasicLookAndFeel;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 class KouLookAndFeel extends BasicLookAndFeel {
 
     @Override

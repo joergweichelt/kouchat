@@ -54,6 +54,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class ExceptionDialog extends JDialog implements UncaughtExceptionListener {
 
     private static final String TIMESTAMP_FORMAT = "dd.MMM.yyyy HH:mm:ss";

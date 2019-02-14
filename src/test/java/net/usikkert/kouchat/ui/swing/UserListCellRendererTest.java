@@ -54,7 +54,7 @@ public class UserListCellRendererTest {
 
     private UserListCellRenderer cellRenderer;
 
-    private JList jList;
+    private JList<User> jList;
     private User user;
 
     private ImageIcon envelope;
@@ -71,7 +71,7 @@ public class UserListCellRendererTest {
 
         cellRenderer = new UserListCellRenderer(imageLoader, new SwingMessages());
 
-        jList = new JList();
+        jList = new JList<>();
         user = new User("Test", 123);
     }
 

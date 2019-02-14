@@ -56,6 +56,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class MessageDialog extends JDialog {
 
     private final JLabel appNameL;

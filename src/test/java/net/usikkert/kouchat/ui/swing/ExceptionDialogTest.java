@@ -57,7 +57,7 @@ import org.mockito.ArgumentMatcher;
  *
  * @author Christian Ihle
  */
-@SuppressWarnings("HardCodedStringLiteral")
+@SuppressWarnings("HardCodedStringLiteral, Serial")
 public class ExceptionDialogTest {
 
     @Rule
@@ -136,6 +136,7 @@ public class ExceptionDialogTest {
     public void closeButtonShouldDisposeOnClick() {
         final boolean[] disposed = {false};
 
+        @SuppressWarnings("serial")
         final ExceptionDialog exceptionDialog1 = new ExceptionDialog(imageLoader, messages) {
             @Override
             public void dispose() {

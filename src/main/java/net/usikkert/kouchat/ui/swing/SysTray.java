@@ -146,17 +146,18 @@ public class SysTray implements ActionListener, MouseListener, PropertyChangeLis
             trayIcon.addActionListener(new ActionListener(){
 	      @Override
 	      public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		  default: {
-		    LOG.log(Level.WARNING, "Unhandled action: {0}", e.getActionCommand());
-		  }
-		  case ACTION_NEW_PRIVATE_MESSAGE: {
-		    if (null != balloonActionListener) {
-		      balloonActionListener.actionPerformed(e);
-		      balloonActionListener = null;
-		    }
-		  }
-		}
+                switch (e.getActionCommand()) {
+                  default: {
+                    LOG.log(Level.WARNING, "Unhandled action: {0}", e.getActionCommand());
+                    break;
+                  }
+                  case ACTION_NEW_PRIVATE_MESSAGE: {
+                    if (null != balloonActionListener) {
+                      balloonActionListener.actionPerformed(e);
+                      balloonActionListener = null;
+                    }
+                  }
+                }
               }
             });
 

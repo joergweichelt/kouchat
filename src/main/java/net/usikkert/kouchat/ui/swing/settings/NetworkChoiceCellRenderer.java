@@ -33,10 +33,11 @@ import javax.swing.JList;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class NetworkChoiceCellRenderer extends DefaultListCellRenderer {
 
     @Override
-    public Component getListCellRendererComponent(final JList list, final Object value,
+    public Component getListCellRendererComponent(final JList<?> list, final Object value,
                                                   final int index, final boolean isSelected,
                                                   final boolean cellHasFocus) {
         final NetworkChoice networkChoice = (NetworkChoice) value;

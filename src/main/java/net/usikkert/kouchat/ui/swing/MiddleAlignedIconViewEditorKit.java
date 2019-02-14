@@ -34,6 +34,7 @@ import javax.swing.text.ViewFactory;
  * @see MiddleAlignedIconViewFactory
  * @see MiddleAlignedIconView
  */
+@SuppressWarnings("serial")
 public class MiddleAlignedIconViewEditorKit extends StyledEditorKit {
 
     /** The custom view factory to use. */

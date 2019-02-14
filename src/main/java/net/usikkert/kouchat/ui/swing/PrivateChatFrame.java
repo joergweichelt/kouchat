@@ -76,6 +76,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class PrivateChatFrame extends JFrame implements ActionListener, KeyListener,
         PrivateChatWindow, FileDropSource, WindowListener, FocusListener {
 

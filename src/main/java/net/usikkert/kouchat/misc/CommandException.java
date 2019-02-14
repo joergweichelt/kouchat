@@ -28,6 +28,7 @@ package net.usikkert.kouchat.misc;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class CommandException extends Exception {
 
     /**

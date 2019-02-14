@@ -35,6 +35,7 @@ import javax.swing.JTextPane;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class JTextPaneWithoutWrap extends JTextPane {
 
     /**

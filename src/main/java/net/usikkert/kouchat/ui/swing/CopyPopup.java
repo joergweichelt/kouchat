@@ -45,6 +45,7 @@ import net.usikkert.kouchat.util.Validate;
  *
  * @author Christian Ihle
  */
+@SuppressWarnings("serial")
 public class CopyPopup extends JPopupMenu implements PopupMenuListener, ActionListener {
 
     /** Menu item to copy selected text in the text pane. */

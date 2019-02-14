@@ -35,7 +35,8 @@ import net.usikkert.kouchat.misc.UserList;
  *
  * @author Christian Ihle
  */
-public class UserListModel extends AbstractListModel implements UserListListener {
+@SuppressWarnings("serial")
+public class UserListModel extends AbstractListModel<User> implements UserListListener {
 
     /** The real list of users. */
     private final UserList userList;
