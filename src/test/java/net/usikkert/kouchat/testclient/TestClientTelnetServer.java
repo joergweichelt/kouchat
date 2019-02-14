@@ -22,11 +22,7 @@
 
 package net.usikkert.kouchat.testclient;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -70,7 +66,7 @@ public class TestClientTelnetServer {
         try {
             final ServerSocket serverSocket = new ServerSocket(20000);
             socket = serverSocket.accept();
-            IOUtils.closeQuietly(serverSocket);
+            close(serverSocket);
 
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -88,9 +84,9 @@ public class TestClientTelnetServer {
     private void stopServer() {
         processMessages = false;
 
-        IOUtils.closeQuietly(reader);
-        IOUtils.closeQuietly(writer);
-        IOUtils.closeQuietly(socket);
+        close(reader);
+        close(writer);
+        close(socket);
     }
 
     private void processMessages() {
@@ -128,6 +124,15 @@ public class TestClientTelnetServer {
         }
 
         catch (final CommandException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void close(Closeable c) {
+        try {
+            c.close();
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
