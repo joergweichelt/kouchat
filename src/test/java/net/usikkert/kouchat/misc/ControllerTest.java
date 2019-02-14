@@ -312,7 +312,7 @@ public class ControllerTest {
         final User user = new User("User1", 124);
         userList.add(user);
 
-        assertEquals(1, userList.indexOf(user));
+        assertNotEquals(-1, userList.indexOf(user));
         assertTrue(user.isOnline());
 
         controller.removeUser(user, "Bla bla");
