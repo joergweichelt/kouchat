@@ -63,7 +63,7 @@ public class PropertyFileMessages implements Messages {
     /**
      * Gets a message with the given key, merged with the given arguments.
      *
-     * <p>Supports messages in property files of the following format:<br/>
+     * <p>Supports messages in property files of the following format:<br>
      * <code>Message with arguments {0}, {1} and {2}</code>.</p>
      */
     @Override

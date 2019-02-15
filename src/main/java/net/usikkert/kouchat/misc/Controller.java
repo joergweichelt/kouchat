@@ -396,8 +396,6 @@ public class Controller implements NetworkConnectionListener {
     /**
      * Logs this client off the network.
      *
-     * <br /><br />
-     *
      * <strong>Note:</strong> removeUsers should not be true when called
      * from a ShutdownHook, as that will lead to a deadlock. See
      * http://bugs.sun.com/bugdatabase/view_bug.do;?bug_id=6261550 for details.

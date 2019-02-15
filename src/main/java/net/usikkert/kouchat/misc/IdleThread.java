@@ -90,9 +90,11 @@ public class IdleThread extends Thread {
     /**
      * This is where most of the action is.
      *
-     * <li>Sends idle messages
-     * <li>Restarts the network if there are problems
-     * <li>Removes timed out clients
+     * <ul>
+     *   <li>Sends idle messages
+     *   <li>Restarts the network if there are problems
+     *   <li>Removes timed out clients
+     * </ul>
      */
     @Override
     public void run() {

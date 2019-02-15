@@ -417,7 +417,6 @@ public class Settings {
 		/**
 		 * Sets wether the app is minimized to tray right from the start.
 		 * 
-		 * @param minimize 
 		 */
 		public void setMinimizeToTray( final boolean minimize )
 		{
@@ -430,7 +429,6 @@ public class Settings {
 		/**
 		 * Gets whether the app can be minimized to tray
 		 * 
-		 * @return 
 		 */
 		public boolean getMinimizeToTray()
 		{

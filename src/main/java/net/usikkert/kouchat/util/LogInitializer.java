@@ -72,8 +72,6 @@ public class LogInitializer {
     /**
      * Enable logging of all levels with the console handler.
      *
-     * <br /><br />
-     *
      * This is important, because the console handler level is
      * set to <code>INFO</code> by default, which overrides the normal
      * logger level. So changing the logger level with the JMX MBean has no effect

@@ -47,8 +47,6 @@ public class ArgumentResponder {
      *   <li><code>Unknown arguments</code> - prints the unknown arguments, and halts.</li>
      * </ul>
      *
-     * <p></p>
-     *
      * @return <code>true</code> if startup should continue, <code>false</code> if startup should halt.
      */
     public boolean respond() {
@@ -76,11 +74,6 @@ public class ArgumentResponder {
         }
 
         // -- version - halt
-        if (argumentParser.hasArgument(Argument.VERSION)) {
-            return false;
-        }
-
-        // Unhandled arguments - continue
-        return true;
+        return !argumentParser.hasArgument(Argument.VERSION);// Unhandled arguments - continue
     }
 }

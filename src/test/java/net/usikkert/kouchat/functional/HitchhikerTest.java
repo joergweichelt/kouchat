@@ -64,7 +64,7 @@ public class HitchhikerTest {
         }
     }
 
-    /**
+    /*
      * In the main chat:
      *
      * Topic: DON'T PANIC

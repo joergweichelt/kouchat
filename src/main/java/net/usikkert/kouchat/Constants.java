@@ -149,7 +149,7 @@ public interface Constants {
     String FILE_FAQ = "FAQ";
 
     /**
-     * Which file to find the tips & tricks.
+     * Which file to find the tips and tricks.
      */
     String FILE_TIPS = "TipsAndTricks.txt";
 }

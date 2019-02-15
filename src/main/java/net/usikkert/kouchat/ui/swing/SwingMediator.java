@@ -578,32 +578,35 @@ public class SwingMediator implements Mediator, UserInterface {
      * depending on the state of the main chat window and the private
      * chat window.
      *
-     * <br /><br />
-     *
      * A private message can never be sent while the sender
      * or receiver is away, so this method assumes that is the case.
      *
      * <ul>
      *   <li><b>Main chat in focus</b></li>
-     *   <ul>
-     *     <li><i>Private chat in focus</i> - not possible</li>
-     *     <li><i>Private chat out of focus</i> - update privchat icon</li>
-     *     <li><i>Private chat hidden</i> - do nothing</li>
-     *   </ul>
-     *
+     *   <li>
+     *     <ul>
+     *       <li><i>Private chat in focus</i> - not possible</li>
+     *       <li><i>Private chat out of focus</i> - update privchat icon</li>
+     *       <li><i>Private chat hidden</i> - do nothing</li>
+     *     </ul>
+     *   </li>
      *   <li><b>Main chat out of focus</b></li>
-     *   <ul>
-     *     <li><i>Private chat in focus</i> - do nothing</li>
-     *     <li><i>Private chat out of focus</i> - beep, update privchat icon</li>
-     *     <li><i>Private chat hidden</i> - beep, update main chat icon</li>
-     *   </ul>
+     *   <li>
+     *     <ul>
+     *       <li><i>Private chat in focus</i> - do nothing</li>
+     *       <li><i>Private chat out of focus</i> - beep, update privchat icon</li>
+     *       <li><i>Private chat hidden</i> - beep, update main chat icon</li>
+     *     </ul>
+     *   </li>
      *
      *   <li><b>Main chat hidden</b></li>
-     *   <ul>
-     *     <li><i>Private chat in focus</i> - do nothing</li>
-     *     <li><i>Private chat out of focus</i> - beep, update privchat icon</li>
-     *     <li><i>Private chat hidden</i> - beep, update systray, show balloon</li>
-     *   </ul>
+     *   <li>
+     *     <ul>
+     *       <li><i>Private chat in focus</i> - do nothing</li>
+     *       <li><i>Private chat out of focus</i> - beep, update privchat icon</li>
+     *       <li><i>Private chat hidden</i> - beep, update systray, show balloon</li>
+     *     </ul>
+     *   </li>
      * </ul>
      *
      * @param user The user that sent the private message.

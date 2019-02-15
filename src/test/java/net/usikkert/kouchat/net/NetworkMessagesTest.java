@@ -70,10 +70,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendAwayMessage().
      *
-     * Expects: 11515687!AWAY#Christian:I am away
      */
     @Test
     public void testSendAwayMessage() {
+        // Expects: 11515687!AWAY#Christian:I am away
         final String awayMsg = "I am away";
         messages.sendAwayMessage(awayMsg);
         verify(service).sendMessageToAllUsers(createMessage("AWAY") + awayMsg);
@@ -82,10 +82,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendBackMessage().
      *
-     * Expects: 12485102!BACK#Christian:
      */
     @Test
     public void testSendBackMessage() {
+        // Expects: 12485102!BACK#Christian:
         messages.sendBackMessage();
         verify(service).sendMessageToAllUsers(createMessage("BACK"));
     }
@@ -93,12 +93,11 @@ public class NetworkMessagesTest {
     /**
      * Tests sendChatMessage().
      *
-     * Expects: 16899115!MSG#Christian:[-15987646]Some chat message
-     *
      * @throws CommandException In case the message could not be sent.
      */
     @Test
     public void testSendChatMessage() throws CommandException {
+        // Expects: 16899115!MSG#Christian:[-15987646]Some chat message
         final String msg = "Some chat message";
         messages.sendChatMessage(msg);
         verify(service).sendMessageToAllUsers(createMessage("MSG") + "[" + settings.getOwnColor() + "]" + msg);
@@ -107,10 +106,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendClient().
      *
-     * Expects: 13132531!CLIENT#Christian:(KouChat v0.9.9-dev null)[134]{Linux}<2222>/4444\
      */
     @Test
     public void testSendClientMessage() {
+        // Expects: 13132531!CLIENT#Christian:(KouChat v0.9.9-dev null)[134]{Linux}<2222>/4444\
         final String startsWith = "(" + me.getClient() + ")[";
         final String middle = ".+\\)\\[\\d+\\]\\{.+"; // like:)[134[{
         final String endsWidth = "]{" + me.getOperatingSystem() + "}<2222>/4444\\";
@@ -125,10 +124,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendExposeMessage().
      *
-     * Expects: 16424378!EXPOSE#Christian:
      */
     @Test
     public void testSendExposeMessage() {
+        // Expects: 16424378!EXPOSE#Christian:
         messages.sendExposeMessage();
         verify(service).sendMessageToAllUsers(createMessage("EXPOSE"));
     }
@@ -136,10 +135,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendExposingMessage().
      *
-     * Expects: 17871777!EXPOSING#Christian:
      */
     @Test
     public void testSendExposingMessage() {
+        // Expects: 17871777!EXPOSING#Christian:
         messages.sendExposingMessage();
         verify(service).sendMessageToAllUsers(createMessage("EXPOSING"));
     }
@@ -147,12 +146,11 @@ public class NetworkMessagesTest {
     /**
      * Tests sendFile().
      *
-     * Expects: 14394329!SENDFILE#Christian:(1234)[80800]{37563645}a_file.txt
-     *
      * @throws CommandException In case the message could not be sent.
      */
     @Test
     public void testSendFileMessage() throws CommandException {
+        // Expects: 14394329!SENDFILE#Christian:(1234)[80800]{37563645}a_file.txt
         final int userCode = 1234;
         final long fileLength = 80800L;
         final String fileName = "a_file.txt";
@@ -176,10 +174,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendFileAbort().
      *
-     * Expects: 15234876!SENDFILEABORT#Christian:(4321){8578765}another_file.txt
      */
     @Test
     public void testSendFileAbortMessage() {
+        // Expects: 15234876!SENDFILEABORT#Christian:(4321){8578765}another_file.txt
         final int userCode = 4321;
         final int fileHash = 8578765;
         final String fileName = "another_file.txt";
@@ -197,12 +195,11 @@ public class NetworkMessagesTest {
     /**
      * Tests sendFileAccept().
      *
-     * Expects: 17247198!SENDFILEACCEPT#Christian:(4321)[20103]{8578765}some_file.txt
-     *
      * @throws CommandException In case the message could not be sent.
      */
     @Test
     public void testSendFileAcceptMessage() throws CommandException {
+        // Expects: 17247198!SENDFILEACCEPT#Christian:(4321)[20103]{8578765}some_file.txt
         final int userCode = 4321;
         final int port = 20103;
         final int fileHash = 8578765;
@@ -222,10 +219,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendGetTopicMessage().
      *
-     * Expects: 19909338!GETTOPIC#Christian:
      */
     @Test
     public void testSendGetTopicMessage() {
+        // Expects: 19909338!GETTOPIC#Christian:
         messages.sendGetTopicMessage();
         verify(service).sendMessageToAllUsers(createMessage("GETTOPIC"));
     }
@@ -233,10 +230,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendIdleMessage().
      *
-     * Expects: 10223997!IDLE#Christian:
      */
     @Test
     public void testSendIdleMessage() {
+        // Expects: 10223997!IDLE#Christian:
         messages.sendIdleMessage();
         verify(service).sendMessageToAllUsers(createMessage("IDLE"));
     }
@@ -244,10 +241,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendLogoffMessage().
      *
-     * Expects: 18265486!LOGOFF#Christian:
      */
     @Test
     public void testSendLogoffMessage() {
+        // Expects: 18265486!LOGOFF#Christian:
         messages.sendLogoffMessage();
         verify(service).sendMessageToAllUsers(createMessage("LOGOFF"));
     }
@@ -255,10 +252,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendLogonMessage().
      *
-     * Expects: 10794786!LOGON#Christian:
      */
     @Test
     public void testSendLogonMessage() {
+        // Expects: 10794786!LOGON#Christian:
         messages.sendLogonMessage();
         verify(service).sendMessageToAllUsers(createMessage("LOGON"));
     }
@@ -266,10 +263,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendNickCrashMessage().
      *
-     * Expects: 16321536!NICKCRASH#Christian:niles
      */
     @Test
     public void testSendNickCrashMessage() {
+        // Expects: 16321536!NICKCRASH#Christian:niles
         final String nick = "niles";
         messages.sendNickCrashMessage(nick);
         verify(service).sendMessageToAllUsers(createMessage("NICKCRASH") + nick);
@@ -278,10 +275,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendNickMessage().
      *
-     * Expects: 14795611!NICK#Christian:
      */
     @Test
     public void testSendNickMessage() {
+        // Expects: 14795611!NICK#Christian:
         final String newNick = "Cookie";
         messages.sendNickMessage(newNick);
         verify(service).sendMessageToAllUsers(createMessage("NICK", newNick));
@@ -290,12 +287,12 @@ public class NetworkMessagesTest {
     /**
      * Tests sendPrivateMessage().
      *
-     * Expects: 10897608!PRIVMSG#Christian:(435435)[-15987646]this is a private message
      *
      * @throws CommandException In case the message could not be sent.
      */
     @Test
     public void testSendPrivateMessage() throws CommandException {
+        // Expects: 10897608!PRIVMSG#Christian:(435435)[-15987646]this is a private message
         final String privmsg = "this is a private message";
         final String userIP = "192.168.5.155";
         final int userPort = 12345;
@@ -316,10 +313,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendStoppedWritingMessage().
      *
-     * Expects: 15140738!STOPPEDWRITING#Christian:
      */
     @Test
     public void testSendStoppedWritingMessage() {
+        // Expects: 15140738!STOPPEDWRITING#Christian:
         messages.sendStoppedWritingMessage();
         verify(service).sendMessageToAllUsers(createMessage("STOPPEDWRITING"));
     }
@@ -327,10 +324,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendTopicChangeMessage().
      *
-     * Expects: 18102542!TOPIC#Christian:(Snoopy)[2132321323]Interesting changed topic
      */
     @Test
     public void testSendTopicChangeMessage() {
+        // Expects: 18102542!TOPIC#Christian:(Snoopy)[2132321323]Interesting changed topic
         final Topic topic = new Topic("Interesting changed topic", "Snoopy", 2132321323L);
         final String message = "(" + topic.getNick() + ")" +
                 "[" + topic.getTime() + "]" +
@@ -343,10 +340,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendTopicRequestedMessage().
      *
-     * Expects: 18102542!TOPIC#Christian:(Snoopy)[66532345]Interesting requested topic
      */
     @Test
     public void testSendTopicRequestedMessage() {
+        // Expects: 18102542!TOPIC#Christian:(Snoopy)[66532345]Interesting requested topic
         final Topic topic = new Topic("Interesting requested topic", "Snoopy", 66532345L);
         final String message = "(" + topic.getNick() + ")" +
                 "[" + topic.getTime() + "]" +
@@ -359,10 +356,10 @@ public class NetworkMessagesTest {
     /**
      * Tests sendWritingMessage().
      *
-     * Expects: 19610068!WRITING#Christian:
      */
     @Test
     public void testSendWritingMessage() {
+        // Expects: 19610068!WRITING#Christian:
         messages.sendWritingMessage();
         verify(service).sendMessageToAllUsers(createMessage("WRITING"));
     }

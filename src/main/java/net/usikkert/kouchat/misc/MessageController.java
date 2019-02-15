@@ -67,8 +67,8 @@ public class MessageController {
 
     /**
      * This is a message from another user.
-     * The result will look like this:<br />
-     * [hour:min:sec] &lt;user&gt; message<br />
+     * The result will look like this:<br>
+     * [hour:min:sec] &lt;user&gt; message<br>
      * The message will be shown in the color spesified.
      *
      * @param user The user who wrote the message.
@@ -83,8 +83,8 @@ public class MessageController {
 
     /**
      * This is an information message from the system. The result
-     * will look like this:<br />
-     * [hour:min:sec] *** message<br />
+     * will look like this:<br>
+     * [hour:min:sec] *** message<br>
      * The message will be shown in the color spesified in the settings.
      *
      * @param message The system message to show.
@@ -97,8 +97,8 @@ public class MessageController {
 
     /**
      * This is a normal message written by the application user,
-     * meant to be seen by all other users. It will look like this:<br />
-     * [hour:min:sec] &lt;nick&gt; message<br />
+     * meant to be seen by all other users. It will look like this:<br>
+     * [hour:min:sec] &lt;nick&gt; message<br>
      * The message will be shown in the color spesified in the settings.
      *
      * @param message The message written by the application user.
@@ -111,8 +111,8 @@ public class MessageController {
 
     /**
      * This is a private message from another user.
-     * The result will look like this:<br />
-     * [hour:min:sec] &lt;user&gt; privmsg<br />
+     * The result will look like this:<br>
+     * [hour:min:sec] &lt;user&gt; privmsg<br>
      * The message will be shown in the color spesified.
      *
      * @param user The user who wrote the message.
@@ -131,8 +131,8 @@ public class MessageController {
 
     /**
      * This is a normal private message written by the application user,
-     * meant to be seen by a single user. It will look like this:<br />
-     * [hour:min:sec] &lt;nick&gt; privmsg<br />
+     * meant to be seen by a single user. It will look like this:<br>
+     * [hour:min:sec] &lt;nick&gt; privmsg<br>
      * The message will be shown in the color spesified in the settings.
      *
      * @param user The user which the message was meant for.
@@ -150,8 +150,8 @@ public class MessageController {
 
     /**
      * This is an information message from the system. The result
-     * will look like this:<br />
-     * [hour:min:sec] *** privmsg<br />
+     * will look like this:<br>
+     * [hour:min:sec] *** privmsg<br>
      * The message will be shown in the color spesified in the settings.
      *
      * @param user The user this system message applies to.
